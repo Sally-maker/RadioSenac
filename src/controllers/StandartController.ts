@@ -1,4 +1,4 @@
-import {StandartService} from '@service/StandartService'
+import {StandartService} from '@service/Standart.Service'
 import {Response,Request} from 'express'
 
 class StandartController{

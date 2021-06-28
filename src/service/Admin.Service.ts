@@ -3,13 +3,12 @@ import {UserAdmin} from '@entities/userAdminEntities'
 import {AdminRepository} from '@repository/AdminRepository'
 
 
-
-
 interface IAdminCreate{
   id:string
   email:string
   password:string
 }
+
 class AdminService {
     private UserRepo:Repository<UserAdmin>
     constructor(){
@@ -19,8 +18,8 @@ class AdminService {
     async create({email, id, password}:IAdminCreate){
       const alreadyUserExist = await this.UserRepo.findOne({where: {id}})
 
-      if(!alreadyUserExist){
-        return alreadyUserExist
+      if(alreadyUserExist){
+        
       }
       const UserAdmin = this.UserRepo.create({
         email,
@@ -29,6 +28,7 @@ class AdminService {
       await this.UserRepo.save(UserAdmin)  
       return UserAdmin
     }
+
 }
 
-export { AdminService }
+export {AdminService}

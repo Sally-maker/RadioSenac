@@ -25,6 +25,9 @@
 "@entities/*":["./src/entities/*"],
 "@service/*":["./src/service/*"],
 "@routes/*":["./src/routes/*"],
+"@error/*":["./src/error/*"],
+"@middlewares/*":["./src/middlewares/*"],
+"@config/*":["./src/config/*"],
 }
 },
 "include": [

@@ -13,4 +13,4 @@ app.use(express.urlencoded({extended:true}))
 app.use(routesAdmin)
 app.use(routesStandart)
 
-app.listen(3333, () => console.log('[INFO]:Servidor Rodando'));
+app.listen(3333, () => console.log('[INFO]:Server is Runnin...'));

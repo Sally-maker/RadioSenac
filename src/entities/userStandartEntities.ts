@@ -2,7 +2,7 @@ import {
   Entity, CreateDateColumn, Column, PrimaryColumn, BeforeInsert, BeforeUpdate
 } from 'typeorm';
 import { v4 } from 'uuid';
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcrypt'
 
 @Entity('UserStandart')
 class UserStandart {

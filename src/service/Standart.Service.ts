@@ -17,8 +17,8 @@ class StandartService {
     async create({email, id, password}:IStandartCreate){
       const alreadyUserExist = await this.UserRepo.findOne({where: {email}})
 
-      if(!alreadyUserExist){
-        return  'User Já existe'
+      if(alreadyUserExist){
+        return  alreadyUserExist
       }
       const UserStandartt = this.UserRepo.create({
         email,
