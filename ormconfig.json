@@ -1,4 +1,10 @@
 {
+  "host": "localhost",
+  "type": "postgres",
+  "port": 5432,
+  "username": "postgres",
+  "password": "h123c456g",
+  "database": "db_users",
   "migrations": ["./src/database/migrations/**.ts"],
   "entities": ["./src/entities/**.ts"],
   "cli": {

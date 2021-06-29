@@ -3,7 +3,7 @@ import { compare } from 'bcrypt'
 
 import {Repository,getCustomRepository} from 'typeorm'
 import {UserStandart} from '@entities/userStandartEntities'
-import {StandartRepository} from '@repository/StandartRepository'
+import {StandartRepository} from '@repository/UserRepository'
 
 import { jsonWebTokenConfiguration } from "../config/auth";
 
@@ -26,6 +26,7 @@ export class AuthService{
   constructor(){
     this.UserRepo = getCustomRepository(StandartRepository)
   }
+   
   async execute({email, password}:Request):Promise<Response>{
     const userr = await this.UserRepo.findOne({email})
 
