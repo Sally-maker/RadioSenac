@@ -1,5 +1,5 @@
-ormconfig.json
 
+nodejs.d.ts
 # Logs
 logs
 *.log
