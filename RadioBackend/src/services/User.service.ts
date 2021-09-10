@@ -1,5 +1,4 @@
 import { hash } from "bcrypt";
-import { response } from "express";
 import {User, UserProps} from '../models/User'
 
 
@@ -8,7 +7,7 @@ interface IUser {
   name:string,
   password:string,
   created_at:Date
-  type:string
+  role:string
 }
 
 interface Response {
@@ -16,14 +15,14 @@ interface Response {
 }
 
 export class CreateUserService {
-  async execute({name,email,password,created_at,type}:IUser):Promise<Response>{
+  async execute({name,email,password,created_at,role}:IUser):Promise<Response>{
 
     const newUser = new User({
       name,
       email,  
       password: await this.generateHashedPassword(password),
       created_at,
-      type
+      role
     })
 
     await newUser.save()

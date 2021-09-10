@@ -5,7 +5,7 @@ export type UserProps = {
   email: string;
   password: string;
   created_at:Date;
-  type:string
+  role: 'standard' | 'admin'
 };
 
 
@@ -17,7 +17,7 @@ export const User = model<UserProps>(
     name: String,
     email: String,
     password: String,
-    type:String
+    role:String
   })
 );
 

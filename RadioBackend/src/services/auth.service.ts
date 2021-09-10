@@ -1,4 +1,3 @@
-import { Repository, getCustomRepository } from 'typeorm';
 import jwt from "jsonwebtoken";
 import { compare } from "bcrypt";
 import { AppError } from "../errors/HttpException";
@@ -20,7 +19,7 @@ export class AuthService {
   async execute({ email, password }: Request): Promise<Response> {
 
     const user = await User.findOne({ email });
-
+    
     if (!user) {
       throw new AppError("User not exists");
     }
@@ -38,6 +37,7 @@ export class AuthService {
       subject: String(user.id),
       expiresIn: process.env.EXPIRES_IN
     });
+
 
     return {
       token,

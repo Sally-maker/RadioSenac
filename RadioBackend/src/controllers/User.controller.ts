@@ -14,9 +14,36 @@ export class UserController {
     }
   }
 
+  /*
+const usuarios = ['fulano', 'ciclano', 'cibertano']
+
+// regra para setar uma role padrão no backend a um usuário
+// ao se cadastrar
+function acessarOuCadastrar(nomeDoUsuario) {
+  const { role, nome, email, password } = request.body
+
+  const usuarioExiste = usuarios.find(usuario => usuario === nomeDoUsuario)
+
+  if (usuarioExiste) {
+    return usuarioExiste
+  }
+
+  if (role) {
+    nomeDoUsuario.role = role
+    usuarios.push(nomeDoUsuario)
+    return nomeDoUsuario
+  }
+
+  nomeDoUsuario.role = 'standard'
+  usuarios.push(nomeDoUsuario)
+  return nomeDoUsuario
+  */
+
   async create(request: Request, response: Response) {
     try {
-      const { name, email, password,created_at, type} = request.body;
+      const { name, email, password,created_at, role} = request.body;
+
+      console.log(role)
 
       const createUserService = new CreateUserService();
 
@@ -25,14 +52,20 @@ export class UserController {
       if(UserExists){
         return response.json("User Já Cadastrado")
       }
+      if(role){
+         UserExists.role = role 
+         return UserExists
+       }
+      
+
       const {user} = await createUserService.execute({
         name,
         email,
         password,
         created_at,
-        type
-      });
-
+        role: UserExists.role = 'standard'
+      });      
+      
       return response.status(201).json({
         user
       });

@@ -1,10 +1,10 @@
 interface UserProps {
-  _id:string
+  _id: string;
   name: string;
   email: string;
   password: string;
-  created_at:Date;
-  type: 'standard' | 'admin'
+  created_at: Date;
+  role: 'standard' | 'admin';
 }
 
-export default UserProps
+export default UserProps;

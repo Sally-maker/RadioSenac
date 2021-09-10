@@ -6,5 +6,4 @@ import {routess} from './Postagens.routes'
 export const Routes = Router()
 
 Routes.use('/Postagem',routess )
-Routes.use('/Users', routes)
-Routes.use('/deletePostagem', routess)
+Routes.use('/users', routes)

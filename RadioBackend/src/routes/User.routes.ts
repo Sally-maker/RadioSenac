@@ -6,7 +6,7 @@ export const routes = Router()
 
 const userController = new UserController()
 
-routes.get('/users', userController.index)
+routes.get('/', userController.index)
 routes.post('/createUser', userController.create)
 routes.post("/auth",userController.session)
 routes.get("/show", ensureAuthenticate, userController.show)
