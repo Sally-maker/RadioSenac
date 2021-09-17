@@ -28,7 +28,7 @@ interface SignInFormData {
   password: string;
 }
 
-const SingIn = () => {
+const Register = () => {
   const formRef = useRef<FormHandles>(null);
   console.log(formRef);
 
@@ -90,4 +90,4 @@ const SingIn = () => {
   );
 };
 
-export default SingIn;
+export default Register;

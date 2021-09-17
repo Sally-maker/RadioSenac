@@ -13,32 +13,7 @@ export class UserController {
       return response.status(400).json({error: error.message})
     }
   }
-
-  /*
-const usuarios = ['fulano', 'ciclano', 'cibertano']
-
-// regra para setar uma role padrão no backend a um usuário
-// ao se cadastrar
-function acessarOuCadastrar(nomeDoUsuario) {
-  const { role, nome, email, password } = request.body
-
-  const usuarioExiste = usuarios.find(usuario => usuario === nomeDoUsuario)
-
-  if (usuarioExiste) {
-    return usuarioExiste
-  }
-
-  if (role) {
-    nomeDoUsuario.role = role
-    usuarios.push(nomeDoUsuario)
-    return nomeDoUsuario
-  }
-
-  nomeDoUsuario.role = 'standard'
-  usuarios.push(nomeDoUsuario)
-  return nomeDoUsuario
-  */
-
+  
   async create(request: Request, response: Response) {
     try {
       const { name, email, password,created_at, role} = request.body;
@@ -52,18 +27,13 @@ function acessarOuCadastrar(nomeDoUsuario) {
       if(UserExists){
         return response.json("User Já Cadastrado")
       }
-      if(role){
-         UserExists.role = role 
-         return UserExists
-       }
       
-
       const {user} = await createUserService.execute({
         name,
         email,
         password,
         created_at,
-        role: UserExists.role = 'standard'
+        role
       });      
       
       return response.status(201).json({
@@ -110,7 +80,7 @@ function acessarOuCadastrar(nomeDoUsuario) {
   async delete(request:Request, response:Response){
     const { _id } = request.params
     try {
-      const userDelete = await User.deleteOne(_id)
+      const userDelete = await User.deleteOne({_id})
 
     return response.status(201).json(userDelete)
     } catch (error) {

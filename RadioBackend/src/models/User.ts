@@ -17,7 +17,7 @@ export const User = model<UserProps>(
     name: String,
     email: String,
     password: String,
-    role:String
+    role: {type:String, default:'standard'}
   })
 );
 

@@ -18,7 +18,7 @@ export class PostagensService{
     await Postagem.save()
 
     return{
-      Postagens: Postagem
+      Postagems: Postagem
     }
   }
 }

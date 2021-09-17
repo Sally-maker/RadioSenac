@@ -34,7 +34,7 @@ export class AuthService {
     }
 
     const token = jwt.sign({}, process.env.SECRECT_TOKEN, {
-      subject: String(user.id),
+      subject: String(user._id),
       expiresIn: process.env.EXPIRES_IN
     });
 

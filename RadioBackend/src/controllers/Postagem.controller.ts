@@ -28,13 +28,13 @@ export class PostagemController {
       }
        
         
-            const { Postagens } = await postagemService.execute({
+            const { Postagems } = await postagemService.execute({
              created_at,
              updated_at,
              content,
             });
             return response.status(201).json({
-              Postagens
+              Postagems
             });  
 
       } catch (error) {
@@ -45,7 +45,7 @@ export class PostagemController {
       try {
         const { _id } = request.params
   
-        const Postagem = await Postagens.deleteOne(_id)
+        const Postagem = await Postagens.deleteOne({_id})
   
        response.status(201).json(Postagem)
         

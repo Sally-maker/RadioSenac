@@ -36,6 +36,21 @@ export const AuthContextProvider: FC = ({ children }) => {
     return null;
   });
 
+  const registration = useCallback(
+    async (
+      email: string,
+      password: string,
+      toast: AddToast,
+      push: (path: string, state?: unknown) => void,
+    ) => {
+      const { data } = await api.post<UserProps>('/users/createUser', {
+        email,
+        password,
+      });
+    },
+    [],
+  );
+
   const signIn = useCallback(
     async (
       email: string,
@@ -50,7 +65,7 @@ export const AuthContextProvider: FC = ({ children }) => {
       console.log('dados do usuario', data);
 
       switch (true) {
-        case data.role === 'admin' && !data._id:
+        case data.role === 'admin':
           setUser(data);
           localStorage.setItem('@RadioSenac', JSON.stringify(data));
 
@@ -60,7 +75,7 @@ export const AuthContextProvider: FC = ({ children }) => {
           });
           push('/dashboard');
           break;
-        case data.role === 'standard' && !data._id:
+        case data.role === 'standard':
           setUser(data);
           localStorage.setItem('@RadioSenac', JSON.stringify(data));
 

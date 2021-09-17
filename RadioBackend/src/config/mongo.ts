@@ -6,4 +6,4 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }
-).then(() => console.log("connected with succesful 🎃🍁"))
+).then(() => console.log("connected with successfully 🎃🍁"))

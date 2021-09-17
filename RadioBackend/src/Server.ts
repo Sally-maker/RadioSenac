@@ -12,20 +12,17 @@ export class Server {
 
   private readonly port = 3333;
 
-  private readonly cors = cors()
-
   start() {
-    this.config()
-    this.cors
     this.dotenv
+    this.config()
     this.app.listen(this.port, () =>
     console.info("[INFO]: Server is running... 🎉🎇🎆")
     );
   }
 
   config() {
+    this.app.use(cors());
     this.app.use(Express.json());
-    this.app.use(cors)
     this.app.use(Routes);
     this.app.use(HttpEsception);
   }
