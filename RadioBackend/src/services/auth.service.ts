@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 import { AppError } from "../errors/HttpException";
 import {User, UserProps} from '../models/User'
 

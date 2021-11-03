@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
 
+const {
+  DB_DATABASE,
+  DB_HOSTNAME,
+  DB_PORT,
+} = process.env
+
 mongoose.connect(
-  "mongodb://localhost:27017",
+  `mongodb://${DB_HOSTNAME}:${DB_PORT}/${DB_DATABASE}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

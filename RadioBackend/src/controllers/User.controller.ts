@@ -14,7 +14,7 @@ export class UserController {
     }
   }
   
-  async create(request: Request, response: Response) {
+  async   create(request: Request, response: Response) {
     try {
       const { name, email, password,created_at, role} = request.body;
 

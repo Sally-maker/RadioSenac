@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+    web:
+        container_name: web
+        build: .
+        restart: always
+        env_file:
+            - .env
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        depends_on:
+            - db
+        links:
+            - db
+        ports:
+            - ${APP_PORT}:${APP_PORT}
+        command: yarn run dev
+
+    db:
+        image: mongo:latest
+        container_name: db
+        restart: always
+        env_file:
+            - .env
+        ports:
+            - '${DB_PORT}:27017'
+        volumes:
+            - dbdata-volume:/data/db
+        environment:
+            MONGO_INITDB_USERNAME: ${DB_USERNAME}
+            MONGO_INITDB_PASSWORD: ${DB_PASSWORD}
+            MONGO_INITDB_DATABASE: ${DB_DATABASE}
+
+volumes:
+    dbdata-volume:
