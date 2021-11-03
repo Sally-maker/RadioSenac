@@ -1,6 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
-/* eslint-disable react/jsx-pascal-case */
 import { useRef } from 'react';
 
 import { FormHandles } from '@unform/core';
@@ -10,9 +7,9 @@ import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import * as Yup from 'yup';
 
-import { Input } from '~/components';
-import { useAuth } from '~/hooks/useAuth';
-import { validationError } from '~/utils/getValidationError';
+import { Input } from '../../components/Input';
+import { useAuth } from '../../hooks/useAuth';
+import { validationError } from '../../utils/getValidationError';
 
 import {
   Container,
@@ -32,7 +29,7 @@ const Register = () => {
   const formRef = useRef<FormHandles>(null);
   console.log(formRef);
 
-  const { signIn } = useAuth();
+  const { registration } = useAuth();
   const { addToast } = useToasts();
   const history = useHistory();
 
@@ -43,7 +40,7 @@ const Register = () => {
         password: Yup.string().required('Preencha o campo de Senha'),
       });
       await schema.validate(data);
-      await signIn(data.email, data.password, addToast, history.push);
+      await registration(data.email, data.password, addToast, history.push);
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         console.log(error);
@@ -62,7 +59,7 @@ const Register = () => {
   return (
     <Container>
       <LoginContainer>
-        <LoginContainer_Title>Login</LoginContainer_Title>
+        <LoginContainer_Title>Register</LoginContainer_Title>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <LoginContainer_Label>Digite suas Credenciais</LoginContainer_Label>
           <Input

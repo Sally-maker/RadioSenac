@@ -1,31 +1,35 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
+/* eslint-disable react/jsx-no-undef */
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { CostumRoute } from '~/components';
-import CustomRoute from '~/components/CustomRoute';
-import { useAuth } from '~/hooks/useAuth';
-
-import { SignIn, Dashboard } from '../pages';
+import { CustomRoute } from '../components/CustomRoute';
+import { useAuth } from '../hooks/useAuth';
+import { DashboardToFeed } from '../pages/DashboardToFeed';
+import { MainScreen } from '../pages/MainScreen';
 
 const Routes = () => {
   const { user } = useAuth();
 
   return (
     <BrowserRouter>
-      <Switch>{!user && <Route path="/" exact component={SignIn} />}</Switch>
+      <Switch>
+        {!user && <Route path="/" exact component={MainScreen} />}
+      </Switch>
 
       {user?.role === 'standard' ? (
-        <CostumRoute role={user.role} path="/dashboard" component={Dashboard} />
+        <CustomRoute
+          role={user.role}
+          path="/dashboard"
+          component={DashboardToFeed}
+        />
       ) : (
         <CustomRoute
           role={user?.role ?? 'admin'}
           path="/dashboard"
-          component={Dashboard}
+          component={DashboardToFeed}
         />
       )}
     </BrowserRouter>
   );
 };
 
-export default Routes;
+export { Routes };

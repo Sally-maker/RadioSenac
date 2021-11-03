@@ -10,6 +10,21 @@ export default createGlobalStyle`
     font-family: 'Roboto', sans-serif;
   }
 
+  :root {
+    --primary: #000;
+    --secondary: #15181C;
+    --search: #202327;
+    --white: #D9D9D9;
+    --gray: #7A7A7A;
+    --outline: #2F3336;
+    --retweet: #00C06B;
+    --like: #E8265E;
+    --twitter: #0E2773;
+    --dark-blue:#08113C;
+    --radio-dark-hover: #804D2E;
+    --radio-light-hover: #FC914B;
+  }
+
   html, body, #root {
     width: 100%;
     height: 100%;

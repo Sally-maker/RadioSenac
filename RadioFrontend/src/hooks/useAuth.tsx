@@ -1,40 +1,29 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import { createContext, FC, useCallback, useContext, useState } from 'react';
 
 import { AddToast } from 'react-toast-notifications';
 import Swal from 'sweetalert2';
 
-import { UserProps } from '~/models';
+// eslint-disable-next-line import-helpers/order-imports
+import { UserProps } from '../models';
 
 import api from '../services/api';
 
 interface AuthContextProps {
   user: UserProps | null;
-  signIn(
+  signOut(): void;
+  registration(
     email: string,
     password: string,
     toast: AddToast,
     push: (path: string, state?: unknown) => void,
   ): Promise<void>;
-  signOut(): void;
   UpdateUser(): void;
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 export const AuthContextProvider: FC = ({ children }) => {
-  const [user, setUser] = useState<UserProps | null>(() => {
-    const UserLocalStorage = JSON.parse(
-      String(localStorage.getItem('@RadioSenac')),
-    ) as UserProps;
-
-    if (UserLocalStorage) {
-      return UserLocalStorage;
-    }
-
-    return null;
-  });
+  const [user, setUser] = useState<UserProps | null>(null);
 
   const registration = useCallback(
     async (
@@ -43,33 +32,17 @@ export const AuthContextProvider: FC = ({ children }) => {
       toast: AddToast,
       push: (path: string, state?: unknown) => void,
     ) => {
-      const { data } = await api.post<UserProps>('/users/createUser', {
+      const { data, headers } = await api.post<UserProps>('/users/createUser', {
         email,
         password,
       });
-    },
-    [],
-  );
+      console.log('dados do usuario', data, headers);
 
-  const signIn = useCallback(
-    async (
-      email: string,
-      password: string,
-      toast: AddToast,
-      push: (path: string, state?: unknown) => void,
-    ) => {
-      const { data } = await api.post<UserProps>('/users/auth', {
-        email,
-        password,
-      });
-      console.log('dados do usuario', data);
-
-      switch (true) {
+      switch (false) {
         case data.role === 'admin':
           setUser(data);
           localStorage.setItem('@RadioSenac', JSON.stringify(data));
-
-          toast('Logado com sucesso!', {
+          toast('User Cadastrado com sucesso!', {
             autoDismiss: true,
             appearance: 'success',
           });
@@ -78,8 +51,7 @@ export const AuthContextProvider: FC = ({ children }) => {
         case data.role === 'standard':
           setUser(data);
           localStorage.setItem('@RadioSenac', JSON.stringify(data));
-
-          toast('Logado com sucesso!', {
+          toast('User Cadastrado com sucesso!', {
             autoDismiss: true,
             appearance: 'success',
           });
@@ -98,7 +70,6 @@ export const AuthContextProvider: FC = ({ children }) => {
   );
 
   const signOut = useCallback(async () => {
-    localStorage.removeItem('@RadioSenac');
     setUser(null);
   }, []);
 
@@ -114,14 +85,11 @@ export const AuthContextProvider: FC = ({ children }) => {
       };
 
       setUser(updateUser);
-
-      localStorage.removeItem('@RadioSenac');
-      localStorage.setItem('@RadioSenac', JSON.stringify(updateUser));
     }
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut, UpdateUser }}>
+    <AuthContext.Provider value={{ user, signOut, UpdateUser, registration }}>
       {children}
     </AuthContext.Provider>
   );

@@ -23,7 +23,7 @@ interface InputProps extends HtmlHTMLAttributes<HTMLInputElement> {
   uppercase?: boolean;
 }
 
-const InputEmail: React.FC<InputProps> = ({
+const Input: React.FC<InputProps> = ({
   name,
   icon: Icon,
   extraStyles,
@@ -78,4 +78,4 @@ const InputEmail: React.FC<InputProps> = ({
   );
 };
 
-export default InputEmail;
+export { Input };

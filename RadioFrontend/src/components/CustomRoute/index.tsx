@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
-import { useAuth } from '~/hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 interface RoutesProps extends RouteProps {
   role: 'standard' | 'admin';
@@ -22,4 +22,4 @@ const CustomRoute: React.FC<RoutesProps> = ({ role, ...rest }) => {
   return <Redirect to="/" />;
 };
 
-export default CustomRoute;
+export { CustomRoute };
