@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Section } from 'components/Section';
-import data from 'data';
+import { Section } from '../../components/Section';
+import data from '../../data';
 
 import { Container } from './styles';
 

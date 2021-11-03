@@ -6,7 +6,6 @@ import {
   Container,
   Navegation,
   LogoRadio,
-  Main,
   Content_Main,
   Header,
 } from './styles';
@@ -33,12 +32,10 @@ const Section: React.FC<Props> = ({ description, title, variant }) => {
         </Header>
       </Navegation>
 
-      <Main>
-        <Content_Main>
-          <h1>{title}</h1>
-          <p>{description}</p>
-        </Content_Main>
-      </Main>
+      <Content_Main>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </Content_Main>
     </Container>
   );
 };

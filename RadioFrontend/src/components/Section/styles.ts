@@ -1,9 +1,39 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 1440px;
+  --padding-top: 100px;
+  --padding-bottom: 120px;
+  --font-size: 32px;
+  --content-width: 100%;
+
+  &.blue {
+    --bg-color: var(--radio-light-hover);
+    --text-color: var(--dark-blue);
+  }
+  &.orange {
+    --bg-color: var(--twitter);
+    --text-color: var(--radio-dark-hover);
+  }
+  &.black {
+    --bg-color: var(--white);
+    --text-color: var(--primary);
+  }
+  &.white {
+    --bg-color: var(--primary);
+    --text-color: var(--white);
+  }
+
+  &:nth-child(1) {
+    --padding-top: 130px;
+    --heading-font-size: 51px;
+
+    @media (min-width: 1024px) {
+      --heading-font-size: 71px;
+      --content-width: 50%;
+    }
+  }
+  background: var(--bg-color);
+  position: relative;
 `;
 
 export const LogoRadio = styled.img`
@@ -13,32 +43,7 @@ export const LogoRadio = styled.img`
   align-items: center;
 `;
 export const Navegation = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 32px;
-
-  h1 {
-    display: flex;
-    align-items: center;
-
-    span {
-      margin-left: 10px;
-    }
-  }
-
-  button {
-    padding: 10px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 16px;
-
-    &:hover {
-      color: var(--twitter);
-    }
-  }
+  position: absolute;
 `;
-export const Main = styled.div``;
 export const Content_Main = styled.div``;
 export const Header = styled.header``;
