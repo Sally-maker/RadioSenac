@@ -1,4 +1,4 @@
-import {PostagemController} from '../controllers/Postagem.controller'
+import {PostagemController} from '@controllers/PostagemController'
 import {Router} from 'express'
 
 

@@ -1,8 +1,7 @@
 import jwt from "jsonwebtoken";
 import { compare } from "bcryptjs";
-import { AppError } from "../errors/HttpException";
-import {User, UserProps} from '../models/User'
-
+import { AppError } from "@errors/HttpException";
+import {User, UserProps} from '@models/User'
 
 
 interface Request {
@@ -30,15 +29,13 @@ export class AuthService {
     );
 
     if (!passwordsIsMatching) {
-     throw new AppError("email or password is incorrect, please try again")
+     throw new AppError("email or password is incorrect, please try again", 401)
     }
 
-    const token = jwt.sign({}, process.env.SECRECT_TOKEN, {
+    const token = jwt.sign({}, process.env.REACT_APP_SECRECT_TOKEN, {
       subject: String(user._id),
-      expiresIn: process.env.EXPIRES_IN
+      expiresIn: process.env.REACT_APP_EXPIRES_IN
     });
-
-
     return {
       token,
       user,

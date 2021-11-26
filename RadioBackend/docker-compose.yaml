@@ -15,7 +15,7 @@ services:
         links:
             - db
         ports:
-            - ${APP_PORT}:${APP_PORT}
+            - ${REACT_APP_APP_PORT}:${REACT_APP_APP_PORT}
         command: yarn run dev
 
     db:
@@ -25,13 +25,13 @@ services:
         env_file:
             - .env
         ports:
-            - '${DB_PORT}:27017'
+            - '${REACT_APP_DB_PORT}:27017'
         volumes:
             - dbdata-volume:/data/db
         environment:
-            MONGO_INITDB_USERNAME: ${DB_USERNAME}
-            MONGO_INITDB_PASSWORD: ${DB_PASSWORD}
-            MONGO_INITDB_DATABASE: ${DB_DATABASE}
+            MONGO_INITDB_USERNAME: ${REACT_APP_DB_USERNAME}
+            MONGO_INITDB_PASSWORD: ${REACT_APP_DB_PASSWORD}
+            MONGO_INITDB_DATABASE: ${REACT_APP_DB_DATABASE}
 
 volumes:
     dbdata-volume:

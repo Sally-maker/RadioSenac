@@ -1,8 +1,7 @@
-import { AuthService } from './../services/auth.service';
-import { CreateUserService } from './../services/User.service';
+import { AuthService } from '@services/authService';
+import { CreateUserService } from '@services/UserService';
 import {Request,Response} from 'express'
-import { User } from '../models/User'
-
+import { User } from '@models/User'
 
 export class UserController {
   async index(request:Request, response:Response){
@@ -14,31 +13,20 @@ export class UserController {
     }
   }
   
-  async   create(request: Request, response: Response) {
+  async create(request: Request, response: Response) {
     try {
-      const { name, email, password,created_at, role} = request.body;
-
-      console.log(role)
+      const { email, password, created_at, role } = request.body;
 
       const createUserService = new CreateUserService();
 
-      const UserExists = await User.findOne({email})
-
-      if(UserExists){
-        return response.json("User Já Cadastrado")
-      }
-      
-      const {user} = await createUserService.execute({
-        name,
+      const user  = await createUserService.execute({
         email,
         password,
         created_at,
         role
-      });      
-      
-      return response.status(201).json({
-        user
       });
+      
+      return response.status(201).json(user);
     } catch (error) {
       return response.status(400).json({error: error.message})
     }
@@ -63,7 +51,7 @@ export class UserController {
     } catch (error) {
       return response.status(400).json({error: error.message})
     }
-  } 
+  }
 
   async show(request: Request, response: Response) {
     try {

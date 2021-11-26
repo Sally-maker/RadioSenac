@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { PostagensService } from '../services/postagens.service'
-import { Postagens } from '../models/Postagens'
+import { PostagensService } from '@services/postagensService'
+import { Postagens } from '@models/Postagens'
  
 export class PostagemController {
   async index(request:Request,response:Response){

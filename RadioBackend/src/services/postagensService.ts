@@ -1,4 +1,4 @@
-import { Postagens } from '../models/Postagens'
+import { Postagens } from '@models/Postagens'
 
  interface IPostagens {
     created_at:Date,

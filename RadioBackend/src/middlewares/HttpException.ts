@@ -1,4 +1,4 @@
-import { AppError } from './../errors/HttpException';
+import { AppError } from '@errors/HttpException';
 import {NextFunction, Request,Response} from 'express'
 
 export function HttpEsception(error:Error,request:Request, response:Response,_:NextFunction){

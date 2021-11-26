@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 const {
-  DB_DATABASE,
-  DB_HOSTNAME,
-  DB_PORT,
+  REACT_APP_DB_DATABASE,
+  REACT_APP_DB_HOSTNAME,
+  REACT_APP_DB_PORT,
 } = process.env
 
 mongoose.connect(
-  `mongodb://${DB_HOSTNAME}:${DB_PORT}/${DB_DATABASE}`,
+  `mongodb://${REACT_APP_DB_HOSTNAME}:${REACT_APP_DB_PORT}/${REACT_APP_DB_DATABASE}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
