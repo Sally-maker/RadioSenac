@@ -33,7 +33,7 @@ const Section: React.FC<Props> = ({ description, title, variant }) => {
       </Navegation>
 
       <Content_Main>
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         <p>{description}</p>
       </Content_Main>
     </Container>

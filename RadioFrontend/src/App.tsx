@@ -8,12 +8,12 @@ import GlobalStyles from './styles/global';
 const App = () => {
   return (
     <>
-      <GlobalStyles />
       <AuthContextProvider>
         <ToastProvider placement="bottom-right">
           <Routes />
         </ToastProvider>
       </AuthContextProvider>
+      <GlobalStyles />
     </>
   );
 };

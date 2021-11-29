@@ -3,15 +3,13 @@ import { createContext, FC, useCallback, useContext, useState } from 'react';
 import { AddToast } from 'react-toast-notifications';
 import Swal from 'sweetalert2';
 
-// eslint-disable-next-line import-helpers/order-imports
-import { UserProps } from '../models';
-
+import { UserProps } from '../models/User';
 import api from '../services/api';
 
 interface AuthContextProps {
   user: UserProps | null;
   signOut(): void;
-  registration(
+  SingIn(
     email: string,
     password: string,
     toast: AddToast,
@@ -23,20 +21,30 @@ interface AuthContextProps {
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 export const AuthContextProvider: FC = ({ children }) => {
-  const [user, setUser] = useState<UserProps | null>(null);
+  const [user, setUser] = useState<UserProps | null>(() => {
+    const userIsStorage = JSON.parse(
+      String(localStorage.getItem('@RadioSenac')),
+    ) as UserProps;
 
-  const registration = useCallback(
+    if (userIsStorage) {
+      return userIsStorage;
+    }
+
+    return null;
+  });
+
+  const SingIn = useCallback(
     async (
       email: string,
       password: string,
       toast: AddToast,
       push: (path: string, state?: unknown) => void,
     ) => {
-      const { data, headers } = await api.post<UserProps>('/users/createUser', {
+      const { data } = await api.post<UserProps>('users/auth', {
         email,
         password,
       });
-      console.log('dados do usuario', data, headers);
+      console.log('dados do usuario', data);
 
       switch (false) {
         case data.role === 'admin':
@@ -79,7 +87,6 @@ export const AuthContextProvider: FC = ({ children }) => {
         _id: user._id,
         email: user.email,
         password: user.password,
-        name: user.name,
         created_at: user.created_at,
         role: user.role,
       };
@@ -89,7 +96,7 @@ export const AuthContextProvider: FC = ({ children }) => {
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, signOut, UpdateUser, registration }}>
+    <AuthContext.Provider value={{ user, signOut, UpdateUser, SingIn }}>
       {children}
     </AuthContext.Provider>
   );

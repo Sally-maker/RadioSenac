@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';

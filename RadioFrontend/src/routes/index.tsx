@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { CustomRoute } from '../components/CustomRoute';

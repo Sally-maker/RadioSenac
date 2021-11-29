@@ -24,7 +24,7 @@ export const Content = styled.div`
   padding-left: 59px;
 `;
 
-export const Header = styled.div`
+export const Header = styled.header`
   display: flex;
   align-items: center;
   font-size: 15px;

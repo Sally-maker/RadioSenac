@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Section } from '../../components/Section';
+import SideMenu from '../../components/SideMenu';
+import { SignUp } from '../../components/SignUp';
 import data from '../../data';
 
 import { Container } from './styles';
@@ -28,6 +30,10 @@ const MainScreen: React.FC = () => {
         title={data[3].title}
         description={data[3].description}
       />
+
+      <SideMenu>
+        <SignUp />
+      </SideMenu>
     </Container>
   );
 };

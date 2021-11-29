@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 export {
   Home,
   ExitToApp,
@@ -15,5 +14,5 @@ export { Chat } from 'styled-icons/heroicons-outline';
 
 export { CategoryAlt } from 'styled-icons/boxicons-regular';
 
-// @styled-icons/remix-line/Radio
+// eslint-disable-next-line import/no-extraneous-dependencies
 export { Retweet } from '@styled-icons/evil';
