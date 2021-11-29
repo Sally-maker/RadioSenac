@@ -17,14 +17,12 @@ export class CreateUserService {
     return hash(password, 8);
   }
   async execute({email,password,created_at,role}:IUser):Promise<Response>{
-
-     const UserExist = await User.findOne({email})
+    const UserExist = await User.findOne({email})
 
      if(UserExist){
-        throw new Error('Usuário já cadastrado');
+        return UserExist;
      }
-    
-      const newUser = new User({
+    const newUser = new User({
         email,  
         password: await this.generateHashedPassword(password),
         created_at,
