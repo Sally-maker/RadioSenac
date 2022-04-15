@@ -1,4 +1,4 @@
-export class AppError {
+export class HttpException {
   public message: string;
 
   public statusCode: number;

@@ -33,7 +33,7 @@ export class UserController {
   }
 
   
-  async session(request: Request, response: Response) {
+  async auth(request: Request, response: Response) {
     try {
       const { email, password } = request.body;
 

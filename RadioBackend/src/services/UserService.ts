@@ -20,7 +20,7 @@ export class CreateUserService {
     const UserExist = await User.findOne({email})
 
      if(UserExist){
-        return UserExist;
+        return
      }
     const newUser = new User({
         email,  
