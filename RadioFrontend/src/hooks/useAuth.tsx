@@ -50,7 +50,7 @@ export const AuthContextProvider: FC = ({ children }) => {
         case data.role === 'admin':
           setUser(data);
           localStorage.setItem('@RadioSenac', JSON.stringify(data));
-          toast('User Cadastrado com sucesso!', {
+          toast('User Logado com sucesso!', {
             autoDismiss: true,
             appearance: 'success',
           });
@@ -59,7 +59,7 @@ export const AuthContextProvider: FC = ({ children }) => {
         case data.role === 'standard':
           setUser(data);
           localStorage.setItem('@RadioSenac', JSON.stringify(data));
-          toast('User Cadastrado com sucesso!', {
+          toast('User Logado com sucesso!', {
             autoDismiss: true,
             appearance: 'success',
           });

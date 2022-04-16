@@ -23,7 +23,7 @@ interface FormData {
   password: string;
 }
 
-const SignUp: React.FC = () => {
+const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { addToast } = useToasts();
@@ -53,7 +53,7 @@ const SignUp: React.FC = () => {
           'content-type': 'multipart/form-data',
         },
       });
-      addToast('User Cadastrado com sucesso', {
+      addToast('User Logado com sucesso', {
         autoDismiss: true,
         appearance: 'success',
       });
@@ -93,4 +93,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export { SignUp };
+export { SignIn };

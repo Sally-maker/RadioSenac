@@ -13,6 +13,9 @@ const Routes = () => {
       <Switch>
         {!user && <Route path="/" exact component={MainScreen} />}
       </Switch>
+      <Switch>
+        {user && <Route path="/dashboard" exact component={DashboardToFeed} />}
+      </Switch>
 
       {user?.role === 'standard' ? (
         <CustomRoute
